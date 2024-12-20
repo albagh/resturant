@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style-menu.css">
+</head>
+<body>
+    <header>
+        <h1> Food order list</h1>
+        
+
+        <nav>
+            <ul>
+                <li><a href="index.html"> Home</a></li>
+                <li><a href="menu.html"> menu </a></li>
+                <li><a href="project by.html">project by</a></li>
+            </ul>
+        </nav> 
+
+    </header>
+
+    
+    <section id="menu">
+        <h2>Order list</h2>
+        <div class="menu">
+            <div class="menu-item">
+                <img src="Pepperoni.jpg" alt="pizza">
+                <h3>Pepperoni Pizza</h3>
+                <span class="price">Price: 60</span>
+            </div>
+    
+            <div class="menu-item">
+                <img src="Mix cheese pizza.jpg" alt="pizza">
+                <h3>Mix Cheese Pizza</h3>
+                <span class="price">Price: 65</span>
+            </div>
+
+            <div class="menu-item">
+                <img src="Mix chicken crepe.jpg" alt="crepe">
+                <h3>Mix chicken crepe</h3>
+                <span class="price">Price: 100</span>
+            </div>
+
+            <div class="menu-item">
+                <img src="Nutella crepe.jpg" alt="crepe">
+                <h3>Nutella crepe</h3>
+                <span class="price">Price: 85</span>
+            </div>
+
+
+
+            
+
+            
+            
+        </div>
+    </section>
+
+
+
+    <section id="order">
+        <h2>Order</h2>
+        <form>
+            <label for="food">Choose an item:</label>
+        
+    
+
+            <select id="food" name="food">
+                <option value="Pepperoni pizza">Pepperoni pizza</option>
+                <option value="Sausage pizza">Sausage pizza</option>
+                <option value="Mix cheese pizza">Mix cheese pizza</option>
+                <option value="Chicken pizza">Chicken pizza</option>
+                <option value="Mix meat pizza">Mix meat pizza</option>
+                <option value="Super Supreme Pizza">Super Supreme Pizza</option>
+                <option value="Meat crepe">Meat crepe</option>
+                <option value="Chicken crepe">Chicken crepe</option>
+                <option value="Crepe strips">Crepe strips</option>
+                <option value="Pane crepe">Pane crepe</option>
+                <option value="Mix meat crepe">Mix meat crepe</option>
+                <option value="Mix chicken crepe">Mix chicken crepe</option>
+                <option value="banana creap">banana creap</option>
+                <option value="Nutella crepe">Nutella crepe</option>           
+            </select>
+
+    
+            <label for="size">Select size:</label>
+            <select id="size" name="size">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+    
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <input type="button" value="Add to Cart" onclick="addToCart()">
+        </form>
+    </section>
+    
+    <section id="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items">
+    
+        </div>
+        <div id="total">
+            Total: $<span id="cart-total">0.00</span>
+        </div>
+    </section>
+
+    
+    <script>
+    function addToCart() {
+        var food = document.getElementById("food").value;
+        var size = document.getElementById("size").value;
+        var quantity = document.getElementById("quantity").value;
+    
+        var cartItem = document.createElement("div");
+        cartItem.innerText = quantity + " " + size + " " + food;
+        document.getElementById("cart-items").appendChild(cartItem);
+    
+    
+        var price = calculatePrice(food, size);
+        var total = parseFloat(document.getElementById("cart-total").innerText);
+        total += price * quantity;
+        document.getElementById("cart-total").innerText = total.toFixed(2);
+    }
+    
+    function calculatePrice(food, size) {
+        
+        var prices = {
+            "Pepperoni pizza": {
+                "Small": 60,
+                "Medium": 80,
+                "Large": 120
+            },
+            "Sausage pizza": {
+                "Small": 55,
+                "Medium": 90,
+                "Large": 70
+            },
+            "Mix cheese pizza": {
+                "Small": 65,
+                "Medium": 80,
+                "Large": 110
+            },
+            "Chicken pizza": {
+                "Small":65 ,
+                "Medium":90 ,
+                "Large": 125
+            },
+            "Mix meat pizza": {
+                "Small": 70,
+                "Medium": 90,
+                "Large": 150
+            },
+            "Super Supreme Pizza": {
+                "Small": 75,
+                "Medium": 100,
+                "Large": 170
+            },
+            "Meat crepe": {
+                "Small": 90,
+                "Medium": 90,
+                "Large": 90
+                
+            },
+            "Chicken crepe": {
+                "Small": 70,
+                "Medium": 70,
+                "Large": 70
+                
+            },
+            "Crepe strips": {
+                "Small": 65,
+                "Medium": 65,
+                "Large": 65
+                
+            },
+            "Pane crepe": {
+                "Small": 75,
+                "Medium": 75,
+                "Large": 75
+                
+            },
+            "Mix meat crepe": {
+                "Small": 130,
+                "Medium": 130,
+                "Large": 130
+                
+            },
+            "Mix chicken crepe": {
+                "Small": 100,
+                "Medium": 100,
+                "Large": 100
+                
+            },
+            "banana creap": {
+                "Small": 40,
+                "Medium": 40,
+                "Large": 40
+                
+            },
+            "Nutella crepe": {
+                "Small": 85,
+                "Medium": 85,
+                "Large": 85
+                
+            },
+        };
+    
+        return prices[food][size] || 0; // إذا لم تجد السعر، استخدم صفر
+    }
+    </script>
+    
+    
+</body>
+</html>
